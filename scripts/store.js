@@ -21,7 +21,7 @@ const store = (function(){
    * @returns {number} index of item in array
    */
   function findById(id){
-    return store.items.find((i)=>{
+    return store.items.findIndex((i)=>{
       return i.id === id;
     });
   }
@@ -37,11 +37,11 @@ const store = (function(){
   /**
    *  @param {string}
     */
-  findAndToggleChecked(id){
+  function findAndToggleChecked(id){
     let item = store.items[this.findById(id)];
     item.checked = !item.checked;
   }
-  findAndUpadateName(id,newName){
+  function findAndUpadateName(id,newName){
     try{
       Item.validateName(newName);
       let item = store.items[findById(id)];
@@ -52,13 +52,21 @@ const store = (function(){
     }
 
   }
-  findAndDelete(id){
+  function findAndDelete(id){
+    this.items = this.items.filter((i)=>{
+      return i.id !== id;
+    });
     
   }
+
   return{
     items,
     hideCheckedItems,
-    searchTerm
+    searchTerm,
+    findAndDelete,
+    findAndToggleChecked,
+    findById,
+    addItem
   };
 
 }());
