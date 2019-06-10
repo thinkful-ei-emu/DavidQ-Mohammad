@@ -1,9 +1,8 @@
 /* eslint-disable no-console */
-/* global shoppingList, cuid */
-/* global store cuid*/
+/* global shoppingList, cuid, store, item*/
+/* eslint-env jquery */
 'use strict';
 
-// eslint-disable-next-line no-unused-vars
 
 function main() {
   shoppingList.bindEventListeners();
@@ -13,3 +12,4 @@ function main() {
 $(main);
 console.log(store);
 console.log(store.foo);
+console.log(item.foo);

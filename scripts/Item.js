@@ -3,6 +3,8 @@
 
 const item = (function (){
   const foo = 'bar';
-  return {}; // returns empty object
+  return {
+    
+  }; // returns empty object
 
 }());
