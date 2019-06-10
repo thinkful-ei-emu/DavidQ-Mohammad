@@ -58,15 +58,27 @@ const store = (function(){
     });
     
   }
+  function toggleCheckedItemsFilter(){
+  /* which toggles this.hideCheckedItems prop */
+    this.hideCheckedItems = !this.hideCheckedItems;
+  }
+  function setSearchTerm(term){
+  /*   changes this.searchTerm to the first argument passed in */
+    this.searchTerm = term;
+  }
+  
 
   return{
     items,
     hideCheckedItems,
     searchTerm,
+    findAndUpadateName,
     findAndDelete,
     findAndToggleChecked,
     findById,
-    addItem
+    addItem,
+    setSearchTerm,
+    toggleCheckedItemsFilter
   };
 
 }());
