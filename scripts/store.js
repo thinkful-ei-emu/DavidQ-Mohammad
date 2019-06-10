@@ -3,7 +3,7 @@
 /* global STORE cuid*/
 'use strict';
 
-const STORE = (function(){
+const store = (function(){
   let foo = 'foo';
   let items= [
     { id: cuid(), name: 'apples', checked: false },

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* global shoppingList, cuid */
-/* global STORE cuid*/
+/* global store cuid*/
 'use strict';
 
 // eslint-disable-next-line no-unused-vars
@@ -11,5 +11,5 @@ function main() {
 }
 
 $(main);
-console.log(STORE);
-console.log(STORE.foo);
+console.log(store);
+console.log(store.foo);
