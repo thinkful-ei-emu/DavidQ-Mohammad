@@ -13,7 +13,7 @@ const Item = (function (){
   }
   return {
     create,
-    
+    validateName
   }; // returns empty object
 
 }());
