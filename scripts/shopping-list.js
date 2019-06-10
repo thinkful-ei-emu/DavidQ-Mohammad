@@ -1,5 +1,5 @@
 'use strict';
-/* global store, cuid */
+/* global STORE, cuid */
 
 // eslint-disable-next-line no-unused-vars
 const shoppingList = (function(){
@@ -36,15 +36,15 @@ const shoppingList = (function(){
   
   
   function render() {
-    // Filter item list if store prop is true by item.checked === false
-    let items = [ ...store.items ];
-    if (store.hideCheckedItems) {
+    // Filter item list if STORE prop is true by item.checked === false
+    let items = [ ...STORE.items ];
+    if (STORE.hideCheckedItems) {
       items = items.filter(item => !item.checked);
     }
   
-    // Filter item list if store prop `searchTerm` is not empty
-    if (store.searchTerm) {
-      items = items.filter(item => item.name.includes(store.searchTerm));
+    // Filter item list if STORE prop `searchTerm` is not empty
+    if (STORE.searchTerm) {
+      items = items.filter(item => item.name.includes(STORE.searchTerm));
     }
   
     // render the shopping list in the DOM
@@ -57,7 +57,7 @@ const shoppingList = (function(){
   
   
   function addItemToShoppingList(itemName) {
-    store.items.push({ id: cuid(), name: itemName, checked: false });
+    STORE.items.push({ id: cuid(), name: itemName, checked: false });
   }
   
   function handleNewItemSubmit() {
@@ -71,7 +71,7 @@ const shoppingList = (function(){
   }
   
   function toggleCheckedForListItem(id) {
-    const foundItem = store.items.find(item => item.id === id);
+    const foundItem = STORE.items.find(item => item.id === id);
     foundItem.checked = !foundItem.checked;
   }
   
@@ -91,28 +91,28 @@ const shoppingList = (function(){
   }
   
   function deleteListItem(id) {
-    const index = store.items.findIndex(item => item.id === id);
-    store.items.splice(index, 1);
+    const index = STORE.items.findIndex(item => item.id === id);
+    STORE.items.splice(index, 1);
   }
   
   function editListItemName(id, itemName) {
-    const item = store.items.find(item => item.id === id);
+    const item = STORE.items.find(item => item.id === id);
     item.name = itemName;
   }
   
   function toggleCheckedItemsFilter() {
-    store.hideCheckedItems = !store.hideCheckedItems;
+    STORE.hideCheckedItems = !STORE.hideCheckedItems;
   }
   
   function setSearchTerm(val) {
-    store.searchTerm = val;
+    STORE.searchTerm = val;
   }
   
   
   function handleDeleteItemClicked() {
     // like in `handleItemCheckClicked`, we use event delegation
     $('.js-shopping-list').on('click', '.js-item-delete', event => {
-      // get the index of the item in store.items
+      // get the index of the item in STORE.items
       const id = getItemIdFromElement(event.currentTarget);
       // delete the item
       deleteListItem(id);
