@@ -1,6 +1,7 @@
+/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 //store iife
-/* global STORE cuid*/
+/* global STORE, cuid, Item */
 'use strict';
 
 const store = (function(){
@@ -13,6 +14,47 @@ const store = (function(){
   ];
   let hideCheckedItems= false;
   let searchTerm ='';
+  /**
+   * 
+   * @param {string} id  cuid to search for
+   * 
+   * @returns {number} index of item in array
+   */
+  function findById(id){
+    return store.items.find((i)=>{
+      return i.id === id;
+    });
+  }
+  function addItem(name){
+    try{
+      Item.validateName(name);
+      store.items.push(Item.create(name));
+    }
+    catch(e){
+      console.log(`Can not add Item: ${e.message}`);
+    }
+  }
+  /**
+   *  @param {string}
+    */
+  findAndToggleChecked(id){
+    let item = store.items[this.findById(id)];
+    item.checked = !item.checked;
+  }
+  findAndUpadateName(id,newName){
+    try{
+      Item.validateName(newName);
+      let item = store.items[findById(id)];
+      item.name = newName;
+    }
+    catch(e){
+      console.log(`Cannot add item: ${e.message}`);
+    }
+
+  }
+  findAndDelete(id){
+    
+  }
   return{
     items,
     hideCheckedItems,
